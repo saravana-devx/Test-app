@@ -27,8 +27,8 @@ export function getUserById(req: Request, res: Response) {
 export function createUser(req: Request, res: Response) {
   const { name, email, role } = req.body;
 
-  // BUG-003: duplicate email check uses wrong comparison — always passes even if email exists
-  const exists = users.find(u => u.email !== email);
+  // Fixed duplicate email check – now correctly detects existing emails
+  const exists = users.find(u => u.email === email);
   if (exists) {
     return res.status(409).json({ error: "Email already in use" });
   }
