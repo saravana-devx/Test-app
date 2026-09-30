@@ -46,7 +46,7 @@ export function getTaskById(req: Request, res: Response) {
 export function createTask(req: Request, res: Response) {
   const { title, description, priority, dueDate } = req.body;
   const newTask: Task = {
-    id: nextId,
+    id: nextId++,
     title,
     description,
     completed: false,
@@ -55,7 +55,7 @@ export function createTask(req: Request, res: Response) {
     createdAt: new Date().toISOString(),
     dueDate: dueDate || null,
   };
-  nextId++;                               // BUG-002: nextId incremented AFTER push, id is stale
+
   tasks.push(newTask);
   res.status(201).json(newTask);
 }
