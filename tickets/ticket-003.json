@@ -1,0 +1,8 @@
+{
+  "id": "003",
+  "title": "POST /api/users always returns 409 conflict even for new emails",
+  "description": "Creating a new user always fails with 409 'Email already in use' even when the email is brand new. The bug is in userController.ts in the createUser function. The duplicate check uses `u.email !== email` instead of `u.email === email`. This means it finds a user whose email is NOT the same (which is almost always true) and incorrectly blocks the request. Fix: change `!==` to `===` in the find() callback.",
+  "severity": "MEDIUM",
+  "labels": ["bug", "api", "users"],
+  "file_hint": "src/controllers/userController.ts"
+}

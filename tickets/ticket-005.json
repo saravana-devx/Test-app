@@ -1,0 +1,8 @@
+{
+  "id": "005",
+  "title": "SECURITY: assignTaskToUser endpoint corrupts user data and has no auth",
+  "description": "The POST /api/users/:id/assign endpoint has multiple critical security issues. It accepts any taskId without verifying the task exists, has no authentication or rate limiting, and accidentally doubles all existing taskIds in the user record due to a spread operator bug. This can corrupt all user records in the system. This requires a security audit and architectural review before any automated fix is attempted.",
+  "severity": "HIGH",
+  "labels": ["security", "critical", "data-corruption"],
+  "file_hint": "src/controllers/userController.ts"
+}

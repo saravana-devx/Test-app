@@ -1,0 +1,8 @@
+{
+  "id": "006",
+  "title": "getTasksByPriority has duplicated logic across all three priority levels",
+  "description": "The getTasksByPriority function in taskController.ts contains ~70 lines of copy-pasted code that repeats the exact same filter + sort logic three times for 'high', 'medium', and 'low' priority levels. This should be refactored into a single generic filter + sort using Array.filter() and Array.sort(). The fix requires rewriting the entire function and removing all the manual loop-based sorting. Estimated change: 65+ lines replaced.",
+  "severity": "LOW",
+  "labels": ["refactor", "code-quality"],
+  "file_hint": "src/controllers/taskController.ts"
+}

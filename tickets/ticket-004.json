@@ -1,0 +1,8 @@
+{
+  "id": "004",
+  "title": "POST /api/tasks crashes with TypeError when body is empty",
+  "description": "When calling POST /api/tasks with an empty body or missing title field, the server crashes with 'TypeError: Cannot read properties of undefined (reading length')'. The bug is in middleware/validate.ts. The validateTask middleware accesses `title.length` without first checking if `title` is defined. If the request body is missing or title is not provided, this throws a runtime error instead of returning a proper 400 response. Fix: add a null/undefined check before accessing title.length — check `if (!title || title.length === 0)`.",
+  "severity": "MEDIUM",
+  "labels": ["bug", "middleware", "crash"],
+  "file_hint": "src/middleware/validate.ts"
+}

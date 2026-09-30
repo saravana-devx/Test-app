@@ -1,0 +1,8 @@
+{
+  "id": "001",
+  "title": "GET /api/tasks/:id always returns 404",
+  "description": "When calling GET /api/tasks/1, the server always returns 404 even though the task exists. The bug is in taskController.ts in the getTaskById function. The route param `req.params.id` is a string but is being compared with `===` against `t.id` which is a number. Fix: parse the id to integer using parseInt() before the comparison.",
+  "severity": "LOW",
+  "labels": ["bug", "api"],
+  "file_hint": "src/controllers/taskController.ts"
+}

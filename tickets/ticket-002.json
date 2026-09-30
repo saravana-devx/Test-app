@@ -1,0 +1,8 @@
+{
+  "id": "002",
+  "title": "New tasks get wrong ID after creation",
+  "description": "When creating a task via POST /api/tasks, the returned task has an ID that is one less than expected. The bug is in taskController.ts in the createTask function. The `nextId++` increment happens AFTER the task is pushed, but the task was already created with the old nextId value. The order is wrong — nextId should be incremented after assigning it to the new task, not after pushing to the array. Fix: move `nextId++` to happen as part of the id assignment: `id: nextId++`.",
+  "severity": "LOW",
+  "labels": ["bug", "api"],
+  "file_hint": "src/controllers/taskController.ts"
+}
