@@ -34,7 +34,7 @@ export function getAllTasks(_req: Request, res: Response) {
 
 // GET /api/tasks/:id
 export function getTaskById(req: Request, res: Response) {
-  const id = req.params.id;               // BUG-001: id is string, never matches number
+  const id = parseInt(req.params.id, 10);               // BUG-001: id is string, never matches number
   const task = tasks.find(t => t.id === id);
   if (!task) {
     return res.status(404).json({ error: "Task not found" });
